@@ -38,6 +38,37 @@ class Graph {
             line(realNode1.x, realNode1.y, realNode2.x, realNode2.y);
         })
     }
+
+    prims() {
+       const MST = new Graph();
+       
+        if (this.nodes.length === 0) {
+            return MST;
+        }
+
+        MST.nodes.push(this.nodes[0])
+
+        let unvisited = this.nodes.slice(1).map(n => n.name);
+
+        while (MST.edges.length < this.nodes.length - 1) {
+            let edgesToConsider = this.edges.filter(edge => myXor(MST.nodes.includes(this.nodes.find(node => node.name === edge.node1)), MST.nodes.includes(this.nodes.find(node => node.name === edge.node2))));
+            edgesToConsider.sort((a, b) => a.weight - b.weight)
+            console.log("Nodes:", MST.nodes)
+            console.log("Edges to consider:", edgesToConsider)
+            if (MST.nodes.includes(this.nodes.find(node => node.name === edgesToConsider[0].node1))) {
+                MST.nodes.push(this.nodes.find(node => node.name === edgesToConsider[0].node2));
+            } else if (MST.nodes.includes(this.nodes.find(node => node.name === edgesToConsider[0].node2))) {
+                MST.nodes.push(this.nodes.find(node => node.name === edgesToConsider[0].node1));
+            }
+            MST.edges.push(edgesToConsider[0]);
+        }
+
+
+        console.log(MST.edges)
+        console.log(MST.nodes)
+
+        return MST;
+    }
 }
 
 class Node {
@@ -52,4 +83,8 @@ class Node {
         point(this.x, this.y);
         text(this.name, this.x + 10, this.y + 10)
     }
+}
+
+function myXor(a, b) {
+    return (a || b) && !(a && b)
 }

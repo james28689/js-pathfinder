@@ -21,7 +21,11 @@ function setup() {
   graph.p5display()
   console.log(graph.edges)
   console.log(graph.nodes)
+  stroke(255,0,0)
   graph.display()
+
+  const mst = graph.prims()
+  mst.p5display()
 }
 
 function draw() {

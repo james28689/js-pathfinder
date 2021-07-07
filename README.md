@@ -1,5 +1,5 @@
 # Classes:
-## Graph:
+## Graph:
 ### edges
 - An array of objects containing the two connected nodes, and the weight of this edge.
 - node1, node2, weight

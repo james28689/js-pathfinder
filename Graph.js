@@ -114,13 +114,23 @@ class Graph {
     }
 }
 
+/**
+ * Class representing a Node, contained within a Graph object. Each node stores an x and y position, as well as a name.
+ */
 class Node {
+    /**
+     * Create a Node
+     * @param {string} name - the intended name for the node.
+     */
     constructor(name) {
         this.name = name
         this.x = random(0, width - 20) + 10;
         this.y = random(0, height - 20) + 10;
     }
 
+    /**
+     * Displays the node on the canvas using p5.js, as well as the name of the node.
+     */
     draw() {
         strokeWeight(10);
         point(this.x, this.y);
@@ -128,6 +138,12 @@ class Node {
     }
 }
 
+/**
+ * Applies an exclusive or operation on two booleans. 
+ * @param {boolean} a - The first boolean for the XOR.
+ * @param {boolean} b - The second boolean for the XOR.
+ * @returns {boolean} The result of a XOR b
+ */
 function myXor(a, b) {
     return (a || b) && !(a && b)
 }

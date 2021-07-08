@@ -1,18 +1,35 @@
+/** Class representing a Graph, containing nodes and edges. */
 class Graph {
+    /**
+     * Create a Graph.
+     */
     constructor() {
         this.edges = [];
         this.nodes = [];
     }
 
+    /**
+     * Add a node to the Graph.
+     * @param {Node} node 
+     */
     addNode(node) {
         var n = new Node(node)
         this.nodes.push(n);
     }
 
+    /**
+     * Add an edge to the Graph.
+     * @param {string} node1 - the name of the first node 
+     * @param {string} node2 - the name of the second node
+     * @param {number} weight - the weight of the edge
+     */
     addEdge(node1, node2, weight = 1) {
         this.edges.push({ node1: node1, node2: node2, weight: weight});
     }
 
+    /**
+     * Displays the Graph in the console, showing the nodes and all nodes connected to them.
+     */
     display() {
         let graph = "";
         console.log(this.edges);
@@ -24,6 +41,9 @@ class Graph {
         console.log(graph)
     }
 
+    /**
+     * Displays the graph onto the canvas using p5.js, with nodes represented as dots and edges as lines.
+     */
     p5display() {
         this.nodes.forEach(node => {
             node.draw();
@@ -39,6 +59,10 @@ class Graph {
         })
     }
 
+    /**
+     * Creates a minimum spanning tree (MST) for the graph using the Prim's algorithm.
+     * @returns {Graph} A graph object containing the minimum spanning tree of the graph.
+     */
     prims() {
        const MST = new Graph();
        
@@ -68,15 +92,21 @@ class Graph {
         return MST;
     }
 
+    /**
+     * Creates a graph as a Graph object containing the nodes and edges specified in the given text.
+     * @param {string[]} data - the string array containing information taken from a graph in resources.
+     * @returns {Graph} the graph created from the given data
+     */
     static fromText(data) {
+        console.log(data)
         let graph = new Graph;
 
         data.forEach(line => {
             var lineCut = line.split(" ");
             if (lineCut.length == 1) {
-            graph.addNode(lineCut[0])
+                graph.addNode(lineCut[0])
             } else if (lineCut.length == 3) {
-            graph.addEdge(lineCut[0], lineCut[1], lineCut[2]);
+                graph.addEdge(lineCut[0], lineCut[1], lineCut[2]);
             }
         })
 

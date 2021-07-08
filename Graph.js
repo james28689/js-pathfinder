@@ -74,8 +74,8 @@ class Graph {
 class Node {
     constructor(name) {
         this.name = name
-        this.x = random(0, width);
-        this.y = random(0, height);
+        this.x = random(0, width - 20) + 10;
+        this.y = random(0, height - 20) + 10;
     }
 
     draw() {

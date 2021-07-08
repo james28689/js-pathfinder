@@ -1,5 +1,5 @@
 function preload() {
-  data = loadStrings("resources/small-graph.txt");
+  data = loadStrings("resources/medium-graph.txt");
 }
 
 function setup() {

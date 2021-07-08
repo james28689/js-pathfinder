@@ -67,6 +67,21 @@ class Graph {
 
         return MST;
     }
+
+    static fromText(data) {
+        let graph = new Graph;
+
+        data.forEach(line => {
+            var lineCut = line.split(" ");
+            if (lineCut.length == 1) {
+            graph.addNode(lineCut[0])
+            } else if (lineCut.length == 3) {
+            graph.addEdge(lineCut[0], lineCut[1], lineCut[2]);
+            }
+        })
+
+        return graph;
+    }
 }
 
 class Node {

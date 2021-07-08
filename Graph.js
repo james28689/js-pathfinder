@@ -48,8 +48,6 @@ class Graph {
 
         MST.nodes.push(this.nodes[0])
 
-        let unvisited = this.nodes.slice(1).map(n => n.name);
-
         while (MST.edges.length < this.nodes.length - 1) {
             let edgesToConsider = this.edges.filter(edge => myXor(MST.nodes.includes(this.nodes.find(node => node.name === edge.node1)), MST.nodes.includes(this.nodes.find(node => node.name === edge.node2))));
             edgesToConsider.sort((a, b) => a.weight - b.weight)
@@ -64,8 +62,8 @@ class Graph {
         }
 
 
-        console.log(MST.edges)
-        console.log(MST.nodes)
+        // console.log(MST.edges)
+        // console.log(MST.nodes)
 
         return MST;
     }
